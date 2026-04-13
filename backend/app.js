@@ -85,19 +85,13 @@ app.delete('/goals/:id', async (req, res) => {
 
 
 
-mongoose.connect(
-  `mongodb://USER:PASS@host:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@your-app@`,
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }
-)
+mongoose.connect(process.env.MONGO_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
 .then(() => {
   console.log('CONNECTED TO MONGODB!!');
-
-  // 🔥 ВАЖНО за Azure
   const PORT = process.env.PORT || 3000;
-
   app.listen(PORT, () => {
     console.log(`SERVER RUNNING ON PORT ${PORT}`);
   });
