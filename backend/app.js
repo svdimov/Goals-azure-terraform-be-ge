@@ -85,7 +85,7 @@ app.delete('/goals/:id', async (req, res) => {
 
 const mongoose = require('mongoose');
 
-const uri = 'mongodb://dimov85-cosmosdb-account.mongo.cosmos.azure.com:10255/course-goals?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000';
+const uri = 'mongodb://dimov85-cosmosdb-account.mongo.cosmos.azure.com:10255/course-goals?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&authSource=admin';
 
 mongoose.connect(uri, {
   user: process.env.MONGO_USER,
