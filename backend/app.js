@@ -83,17 +83,21 @@ app.delete('/goals/:id', async (req, res) => {
   }
 });
 
-const mongoUri = process.env.MONGO_URI;
+const mongoose = require('mongoose');
 
-mongoose.connect(mongoUri, {
+const uri = 'mongodb://dimov85-cosmosdb-account.mongo.cosmos.azure.com:10255/course-goals?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000';
+
+mongoose.connect(uri, {
+  user: process.env.MONGO_USER,
+  pass: process.env.MONGO_PASS,
   useNewUrlParser: true,
-  useUnifiedTopology: true,
+  useUnifiedTopology: true
 })
-  .then(() => {
-    console.log('CONNECTED TO MONGODB!!');
-    app.listen(process.env.PORT || 3000);
-  })
-  .catch((err) => {
-    console.error('FAILED TO CONNECT TO MONGODB');
-    console.error(err);
-  });
+.then(() => {
+  console.log('CONNECTED TO MONGODB!!');
+  app.listen(process.env.PORT || 3000);
+})
+.catch((err) => {
+  console.error('FAILED TO CONNECT TO MONGODB');
+  console.error(err);
+});
