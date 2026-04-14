@@ -96,6 +96,8 @@ jobs:
 
       - name: Build frontend
         run: npm run build
+        env:
+          REACT_APP_BACKEND_URL: https://goal-backend-app.azurewebsites.net
 
       - name: Run frontend tests if present
         run: npm run test --if-present
